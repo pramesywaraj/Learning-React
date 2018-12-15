@@ -1,0 +1,27 @@
+.Cockpit {
+    margin: 5% 0 0 0;
+}
+
+.Cockpit button {
+    background-color: #007BFF;
+    font: inherit;
+    color: white;
+    border: 1px solid #007BFF;
+    padding: 8px;
+    cursor: pointer;
+}
+  
+.Cockpit button:hover {
+    background-color: #0069D9;
+    color: white;
+}
+
+.clicked {
+    background-color: #FFC107 !important;
+    border: 1px solid #FFC107 !important;
+}
+
+.clicked:hover {
+    background-color: #E0A800 !important;
+    color: black !important;
+}
