@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import appStyle from './App.css';
 import Person from './Person/Person';
 
 // import Radium, { StyleRoot } from 'radium';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+
 
 class App extends Component {
   state = {
@@ -53,71 +55,74 @@ class App extends Component {
   }
   
   render() {
-    const buttonStyle = {
-      backgroundColor: '#007BFF',
-      font: 'inherit',
-      color: 'white',
-      border: '1px solid #007BFF',
-      padding: '8px',
-      cursor: 'pointer',
-      // ':hover': {
-      //   backgroundColor: '#0069D9',    //Pake Radium
-      //   color: 'white'
-      // }
-    };
+    // const buttonStyle = {
+    //   backgroundColor: '#007BFF',
+    //   font: 'inherit',
+    //   color: 'white',
+    //   border: '1px solid #007BFF',
+    //   padding: '8px',
+    //   cursor: 'pointer',
+    //   // ':hover': {
+    //   //   backgroundColor: '#0069D9',    //Pake Radium
+    //   //   color: 'white'
+    //   // }
+    // };
 
     let persons = null;
+    let buttonClass = '';
 
     if( this.state.showPersons ) {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person
-              click={() =>
-                this.deletePersonHandler(index)
-              } 
-              name={person.name} 
-              age={person.age}
-              key={person.id}
-              changed={(event) => this.nameChangedHandler(event, person.id)}></Person>
+            return <ErrorBoundary key={person.id}>
+              <Person
+                click={() => this.deletePersonHandler(index)} 
+                name={person.name} 
+                age={person.age}
+                changed={(event) => this.nameChangedHandler(event, person.id)} />
+            </ErrorBoundary>
           })}
         </div>
       );
-      buttonStyle.backgroundColor = '#FFC107';
-      buttonStyle.border = '1px solid #FFC107 ';
+      // buttonStyle.backgroundColor = '#FFC107';
+      // buttonStyle.border = '1px solid #FFC107 ';
       // buttonStyle[':hover'] = {
       //   backgroundColor: '#E0A800',     //Pake radium
       //   color: 'black',
       // }
+      buttonClass = appStyle.clicked;
     }
     
     let emptyAlert = [];
     let listCondition = ['Tenang KITA disini.'];
     if( this.state.persons.length <=2 ) {
       listCondition.pop();
-      emptyAlert.push('alert');
+      emptyAlert.push(appStyle.alert);
       listCondition.push('List dibawah 2, harap tenang.');
     }
     
     if( this.state.persons.length <= 1)
     {
-      emptyAlert.push('danger');
+      emptyAlert.push(appStyle.danger);
       listCondition.pop();
       listCondition.push('Bahaya list telah kosong!');
     }
 
     return (
       // <StyleRott>  // Pake Radium
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
+        // <div className="App">
+        <div className={appStyle.App}>
+          <header className={appStyle.App_header}>
+            <img src={logo} className={appStyle.App_logo} alt="logo" />
             <p className={emptyAlert.join(' ')}>
               {listCondition}
             </p>
           </header>
-          <div className="App-body">
+          <div className={appStyle.App_body}>
             <button
-              style={buttonStyle} 
+              // style={buttonStyle} 
+              className={buttonClass}
               onClick={() => this.togglePersonsHandler()}>Ganti Nama
             </button>
             {/* persons disini adalah variable */}

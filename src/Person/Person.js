@@ -1,18 +1,19 @@
 import React from 'react';
-import './Person.css';
+import personStyle from './Person.css';
 
 // import Radium from 'radium';
 
 const Person = (props) => {
-    const personContainerStyle =  {
-        '@media (min-width: 500px)': {
-            width : '450px'
-        }
-    }
+    // const personContainerStyle =  {
+    //     '@media (min-width: 500px)': {
+    //         width : '450px'
+    //     }
+    // }
+
     return (
         // <div className="Person" style={personContainerStyle}> // pas pake radium
-        <div className="Person">
-            <div className="Person-content" onClick={props.click}>
+        <div className={personStyle.Person}>
+            <div className={personStyle.Person_content} onClick={props.click}>
                 <p>Aku adalah {props.name} seorang Mahasiswa dan aku berumur {props.age}</p>
                 <p>{props.children}</p>
             </div>

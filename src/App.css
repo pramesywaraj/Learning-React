@@ -2,12 +2,36 @@
   text-align: center;
 }
 
-.App-logo {
+.App button {
+  background-color: #007BFF;
+  font: inherit;
+  color: white;
+  border: 1px solid #007BFF;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.App button:hover {
+  background-color: #0069D9;
+  color: white;
+}
+
+.App button.clicked {
+  background-color: #FFC107;
+  border: 1px solid #FFC107;
+}
+
+.App button.clicked:hover {
+  background-color: #E0A800;
+  color: black;
+}
+
+.App_logo {
   animation: App-logo-spin infinite 20s linear;
   height: 100px;
 }
 
-.App-header {
+.App_header {
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -18,7 +42,7 @@
   color: white;
 }
 
-.App-body {
+.App_body {
   margin: 5% 0 0 0;
 }
 
